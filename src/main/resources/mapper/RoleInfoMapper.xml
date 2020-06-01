@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rudy.dao.RoleInfoMapper">
+    <resultMap id="BaseResultMap" type="com.rudy.entity.RoleInfo">
+        <id column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_key" jdbcType="VARCHAR" property="roleKey" />
+        <result column="role_sort" jdbcType="VARCHAR" property="roleSort" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    role_id, role_name, role_key, role_sort, status, del_flag
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_role
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllRole" parameterType="com.rudy.entity.RoleInfo" resultType="com.rudy.entity.RoleInfo">
+        select * from tbl_role where del_flag = 0
+    </select>
+    <select id="selectRoleByName" parameterType="String" resultType="com.rudy.entity.RoleInfo">
+        select * from tbl_role where role_name = #{roleName}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByIds"  parameterType="java.util.List">
+        delete from tbl_role
+        where role_id in
+        <foreach collection="ids" item="idList" open="(" close=")" separator=",">
+            #{idList}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.rudy.entity.RoleInfo">
+        insert into tbl_role (<include refid="Base_Column_List"></include>
+        )
+
+        values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleKey,jdbcType=VARCHAR}, #{roleSort,jdbcType=INTEGER},#{status,jdbcType=CHAR},#{delFlag,jdbcType=CHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.rudy.entity.RoleInfo">
+        insert into tbl_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleKey != null">
+                role_key,
+            </if>
+            <if test="roleSort != null">
+                role_sort,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="delFlag != null">
+                delFlag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleKey != null">
+                #{roleKey,jdbcType=VARCHAR},
+            </if>
+            <if test="roleSort != null">
+                #{roleSort,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.rudy.entity.RoleInfo">
+        update tbl_role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleKey != null">
+                role_key = #{roleKey,jdbcType=VARCHAR},
+            </if>
+            <if test="roleSort != null">
+                role_sort = #{roleSort,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </update>
+    <update id="upateRoleDelFlagById">
+        update tbl_role
+        set del_flag = 1
+        where role_id = #{roleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateRoleDelFlagByIds">
+        update tbl_role
+        set del_flag = 1
+        where role_id in
+        <foreach collection="ids" item="idList" open="(" close=")" separator=",">
+            #{idList}
+        </foreach>
+    </update>
+</mapper>

@@ -1,0 +1,224 @@
+﻿<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicon Icon -->
+	<link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.png}">
+
+	<!-- All css here -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/meanmenu.css}">
+	<link rel="stylesheet" th:href="@{/css/material-design-iconic-font.min.css}">
+	<link rel="stylesheet" th:href="@{/css/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+	<link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+	<link rel="stylesheet" th:href="@{/css/jquery.circliful.css}">
+	<link rel="stylesheet" th:href="@{/css/animate.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<script th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
+	<script th:src="@{/js/jquery-3.4.1.js}"></script>
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body style="overflow-y:scroll;">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header">
+		<div class="layui-logo" ><img src="image/logo.png"></div>
+		<!-- 头部区域（可配合layui已有的水平导航） -->
+		<ul class="layui-nav layui-layout-left">
+			<li class="layui-nav-item"><a th:href="@{/}">首页</a></li>
+			<li class="layui-nav-item"><a href="backStageIndex">后台</a></li>
+			<li class="layui-nav-item">
+				<!--                <a href="javascript:;">其它系统</a>-->
+				<dl class="layui-nav-child">
+				</dl>
+			</li>
+		</ul>
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+					<span th:text="${loginName}"></span>
+				</a>
+				<dl class="layui-nav-child">
+					<!--                    <dd><a href="">基本资料</a></dd>-->
+					<!--                    <dd><a href="">安全设置</a></dd>-->
+				</dl>
+			</li>
+			<!--            <div th:if="${loginName}">-->
+			<li class="layui-nav-item"><a th:if="${loginName}" href="javascript:;" onclick="logout()"><i class="layui-icon layui-icon-logout"></i>退出</a></li>
+			<li class="layui-nav-item"><a th:if="!${loginName}" th:href="@{/toLogin}"><i class="layui-icon layui-icon-username"></i>登录</a></li>
+		</ul>
+	</div>
+</div>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+	//JavaScript代码区域
+	layui.use('element', function(){
+		var element = layui.element;
+
+	});
+</script>
+
+<!-- Background Area Start -->
+<section id="slider" class="slider-area">
+	<div class="slider-wrapper">
+		<div class="single-slide height-100vh" style="background-image: url('img/slider/slider1.jpg');">
+			<div class="slider-content">
+				<div class="text-content-wrapper">
+					<div class="text-content text-center">
+						<h5>Think Biger From Other</h5>
+						<h2>creative theme customizeable for all</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut dolore magna aliqua. Ut enim ad minimcommodo consequat. Duis aute irure dolor </p>
+						<a href="#" class="default-btn">read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="single-slide height-100vh" style="background-image: url('img/slider/slider2.jpg');">
+			<div class="slider-content">
+				<div class="text-content-wrapper">
+					<div class="text-content text-center">
+						<h5>Think Biger From Other</h5>
+						<h2>creative theme customizeable for all</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut dolore magna aliqua. Ut enim ad minimcommodo consequat. Duis aute irure dolor </p>
+						<a href="#" class="default-btn">read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="single-slide height-100vh" style="background-image: url('img/slider/slider3.jpg');">
+			<div class="slider-content">
+				<div class="text-content-wrapper">
+					<div class="text-content text-center">
+						<h5>Think Biger From Other</h5>
+						<h2>creative theme customizeable for all</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut dolore magna aliqua. Ut enim ad minimcommodo consequat. Duis aute irure dolor </p>
+						<a href="#" class="default-btn">read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Background Area End -->
+<!-- Fun Area Start -->
+<section id="fun" class="fun-area pt-100 pb-100 text-center">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 col-sm-4 col-xs-12">
+				<div class="single-fun">
+					<div class="single-fun-content">
+						<span class="ti-heart"></span>
+						<h3 class="counter">100</h3>
+<!--						<p>reviews</p>-->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-12">
+				<div class="single-fun">
+					<div class="single-fun-content">
+						<span class="ti-crown"></span>
+						<h3 class="counter">100</h3>
+<!--						<p>awards</p>-->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-12">
+				<div class="single-fun">
+					<div class="single-fun-content">
+						<span class="ti-star"></span>
+						<h3 class="counter">100</h3>
+<!--						<p>rating</p>-->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 hidden-sm col-xs-12">
+				<div class="single-fun">
+					<div class="single-fun-content">
+						<span class="ti-github"></span>
+						<h3 class="counter">100</h3>
+<!--						<p>downloads</p>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Fun Area End -->
+
+<!-- Footer Area Start -->
+<div class="footer-area text-center">
+	<div class="footer-main pt-60 pb-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="footer-logo">
+						<a href="index.html"><img th:src="@{img/logo/logo.png}" alt="bizniz"></a>
+					</div>
+					<div class="footer-content">
+						<p>Keep doing to keep moving</p>
+<!--						<p>Email : username@email.com, Phone : +660 256 24857 </p>-->
+						<div class="footer-social">
+							<ul>
+								<li><a href="#"><i class="ti-facebook"></i></a></li>
+								<li><a href="#"><i class="ti-twitter"></i></a></li>
+								<li><a href="#"><i class="ti-dribbble"></i></a></li>
+								<li><a href="#"><i class="ti-pinterest"></i></a></li>
+								<li><a href="#"><i class="ti-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom pt-12 pb-14 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Copyright &copy; 2020.Rudy a little bit rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Footer Area End -->
+
+<!-- All js here -->
+<script th:src="@{/js/vendor/jquery-1.12.4.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/ajax-mail.js}"></script>
+<script th:src="@{/js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{/js/isotope.pkgd.min.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.js}"></script>
+<script th:src="@{/js/plugins.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+
+<script>
+	function logout(data) {
+		layui.use('layer',function () {
+			var layer = layui.layer;
+			layer.confirm("确定退出吗？",{
+				btn : ['确定','取消'],
+				btn2 : function () {
+				}
+			},function () {
+				location.href="logout";
+			})
+		})
+	}
+</script>
+</html>
