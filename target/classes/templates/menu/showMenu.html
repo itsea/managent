@@ -76,11 +76,11 @@
         -->
 
             <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
+                <label class="layui-form-label">菜单类型</label>
                 <div name="menuType" class="layui-input-block" id="metype">
-                    <input type="radio" name="menuType" value="M" title="目录" checked="">
-                    <input type="radio" name="menuType" value="C" title="菜单" checked="">
-                    <input type="radio" name="menuType" value="F" title="按钮" checked="">
+                    <input type="radio" name="menuType" value="M" title="目录" id="mulu" lay-filter="menuTy">
+                    <input type="radio" name="menuType" value="C" title="菜单" id="caidan" lay-filter="menuTy">
+                    <input type="radio" name="menuType" value="F" title="按钮" id="anniu" lay-filter="menuTy">
                 </div>
             </div>
 
@@ -117,10 +117,10 @@
           **根据menuId查询可见性，
           -->
             <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
+                <label class="layui-form-label">可见</label>
                 <div name="visible" class="layui-input-block" id="vis">
-                    <input type="radio" name="menuType" value=0 title="显示" >
-                    <input type="radio" name="menuType" value=1 title="隐藏" >
+                    <input type="radio" name="visible" value=0 title="显示" id="show" lay-filter="menuVis">
+                    <input type="radio" name="visible" value=1 title="隐藏" id="hide" lay-filter="menuVis">
 
                 </div>
             </div>
@@ -162,9 +162,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">菜单类型</label>
                 <div name="menuType" class="layui-input-block" id="metypeA">
-                    <input type="radio" name="menuType" value="M" title="目录" >
-                    <input type="radio" name="menuType" value="C" title="菜单" >
-                    <input type="radio" name="menuType" value="F" title="按钮" >
+                    <input type="radio" name="menuType" value="M" title="目录" id="muluA" lay-filter="menuTyA">
+                    <input type="radio" name="menuType" value="C" title="菜单" id="caidanA" lay-filter="menuTyA">
+                    <input type="radio" name="menuType" value="F" title="按钮" id="anniuA" lay-filter="menuTyA">
                 </div>
             </div>
 
@@ -203,10 +203,10 @@
 
 
             <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
+                <label class="layui-form-label">可见</label>
                 <div name="visible" class="layui-input-block" id="visA">
-                    <input type="radio" name="menuType" value=0 title="显示" >
-                    <input type="radio" name="menuType" value=1 title="隐藏" >
+                    <input type="radio" name="visible" value=0 title="显示" >
+                    <input type="radio" name="visible" value=1 title="隐藏" >
 
                 </div>
             </div>
@@ -477,17 +477,45 @@
 
 
                     } else if (event === 'edit') {
-                       //console.log(data);
+                        //console.log(data);
                         $("#menuId").val(data.menuId);
                         $("#menuname").val(data.menuName);
-                        getType(data.menuType);
+
                         //$("#parentId").val(data.parentId);
                         $("#num").val(data.orderNum);
                         $("#address").val(data.url);
-                        //$("#menuType").val(data.menuType);
-                        $("#vis").val(data.visible);
+
                         $("#pem").val(data.perms);
 
+                        if (data.visible == 0){
+                            $('#show input[lay-filter="vis"]').attr("checked","checked");
+                            $('#hide input[lay-filter="vis"]').removeAttr("checked","checked");
+
+                            // form.render();
+                        }
+                        else {
+                            $('#show input[lay-filter="vis"]').removeAttr("checked","checked");
+                            $('#hide input[lay-filter="vis"]').attr("checked","checked");
+                            // form.render();
+                        }
+                        form.render();
+                        if (data.menuType == 'M'){
+                            $('#mulu input[lay-filter="menuTy"]').attr("checked","checked");
+                            $('#caidan input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            $('#anniu input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            // form.render();
+                        }
+                        else if(data.menuType == 'C'){
+                            $('#mulu input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            $('#caidan input[lay-filter="menuTy"]').attr("checked","checked");
+                            $('#anniu input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            //
+                        }else{
+                            $('#mulu input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            $('#caidan input[lay-filter="menuTy"]').removeAttr("checked","checked");
+                            $('#anniu input[lay-filter="menuTy"]').attr("checked","checked");
+                        }
+                        form.render();
                         layer.open(
                             {
                                 type: 1,
